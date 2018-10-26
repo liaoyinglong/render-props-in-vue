@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import TableContainer from "./components/TableContainer";
+import TableContainer from "@/components/TableContainer";
 
 export default {
   name: "app",
