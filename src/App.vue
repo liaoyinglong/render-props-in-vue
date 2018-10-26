@@ -32,13 +32,11 @@
 </template>
 
 <script>
-import ElTableBody from "element-ui/packages/table/src/table-body";
 import TableContainer from "./components/TableContainer";
 
 export default {
   name: "app",
   components: {
-    ElTableBody,
     TableContainer
   },
   data() {
