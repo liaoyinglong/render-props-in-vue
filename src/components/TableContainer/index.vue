@@ -1,6 +1,6 @@
 <template>
   <div id="TableContainer">
-    <slot :tableData="tableData" :fetchData="fetchData"></slot>
+    <slot :tableData="tableData" :getTableData="getTableData"></slot>
     <el-pagination
       style="margin-top:10px"
       @size-change="handleSizeChange"
@@ -15,6 +15,7 @@
 </template>
 <script>
 import axios from "axios";
+
 export default {
   props: {
     url: { type: String, default: "" },
@@ -29,29 +30,28 @@ export default {
     };
   },
   created() {
-    this.fetchData();
+    this.getTableData();
   },
   methods: {
-    fetchData() {
+    getTableData() {
       const { params, current, pageSize } = this;
       axios
         .get(this.url, { params: { ...params, current, pageSize } })
         .then(res => {
           console.log(res);
-
           this.tableData = res.data.list;
-          this.current = +res.data.current;
-          this.pageSize = +res.data.pageSize;
-          this.total = +res.data.total;
+          this.current = res.data.current;
+          this.pageSize = res.data.pageSize;
+          this.total = res.data.total;
         });
     },
     handleSizeChange(pageSize) {
       this.pageSize = pageSize;
-      this.fetchData();
+      this.getTableData();
     },
     handleCurrentChange(current) {
       this.current = current;
-      this.fetchData();
+      this.getTableData();
     }
   }
 };

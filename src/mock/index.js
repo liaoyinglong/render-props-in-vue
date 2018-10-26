@@ -69,9 +69,9 @@ const getList = config => {
   );
 
   return {
-    current: current,
-    pageSize: pageSize,
-    total: mockList.length,
+    current: +current,
+    pageSize: +pageSize,
+    total: +pageList.length,
     list: pageList
   };
 };
